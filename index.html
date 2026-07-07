@@ -67,6 +67,28 @@
             color: #475569;
         }
 
+        .section-divider {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            margin: 50px 0 30px;
+        }
+
+        .section-divider .line {
+            flex: 1;
+            height: 3px;
+            background: linear-gradient(to right, #8b5cf6, transparent);
+            border-radius: 2px;
+        }
+
+        .section-divider .label {
+            font-size: 1.6em;
+            font-weight: 700;
+            color: #8b5cf6;
+            letter-spacing: 2px;
+            white-space: nowrap;
+        }
+
         p {
             margin-bottom: 1em;
         }
@@ -228,6 +250,19 @@
             text-decoration: underline;
         }
 
+        .toc .toc-divider {
+            column-span: all;
+            text-align: center;
+            font-weight: 700;
+            color: #8b5cf6;
+            letter-spacing: 2px;
+            padding: 8px 0;
+            font-size: 1.1em;
+            border-bottom: 2px solid #e2e8f0;
+            border-top: 2px solid #e2e8f0;
+            margin: 6px 0;
+        }
+
         .image-container {
             margin: 20px 0;
             border-radius: 12px;
@@ -350,6 +385,45 @@
             font-size: 0.95em;
         }
 
+        .string-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 6px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .string-item:last-child {
+            border-bottom: none;
+        }
+
+        .string-text {
+            font-family: 'Courier New', monospace;
+            font-size: 0.95em;
+            word-break: break-all;
+        }
+
+        .copy-string-btn {
+            background: #8b5cf6;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            padding: 4px 12px;
+            font-size: 0.75em;
+            cursor: pointer;
+            transition: background 0.2s;
+            flex-shrink: 0;
+            margin-left: 10px;
+        }
+
+        .copy-string-btn:hover {
+            background: #7c3aed;
+        }
+
+        .copy-string-btn.copied {
+            background: #22c55e;
+        }
+
         @media (max-width: 768px) {
             .container {
                 padding: 20px 16px;
@@ -375,6 +449,19 @@
 
             .feature-grid {
                 grid-template-columns: 1fr;
+            }
+
+            .string-item {
+                flex-wrap: wrap;
+                gap: 6px;
+            }
+
+            .copy-string-btn {
+                margin-left: 0;
+            }
+
+            .section-divider .label {
+                font-size: 1.2em;
             }
         }
 
@@ -404,6 +491,7 @@
     <div class="toc">
         <h3>📑 Содержание</h3>
         <ul>
+            <div class="toc-divider">⬡ БАЗА</div>
             <li><a href="#section-step1">Шаг 1 – Проверка версии в игре</a></li>
             <li><a href="#section-step2">Шаг 2 – Чатовые команды и хитбоксы</a></li>
             <li><a href="#section-step3">Шаг 3 – Настройки и папка mods</a></li>
@@ -416,8 +504,11 @@
             <li><a href="#section-step10">Шаг 10 – Папка LabyMod</a></li>
             <li><a href="#section-step11">Шаг 11 – Папка config</a></li>
             <li><a href="#section-step12">Шаг 12 – Папки читов в .minecraft</a></li>
-            <li><a href="#section-everything">Everything – поиск по ключам</a></li>
+
+            <div class="toc-divider">⬡ ПРОГРАММЫ</div>
             <li><a href="#section-modchecker">Проверка модов (PowerShell)</a></li>
+            <li><a href="#section-everything">Everything – поиск по ключам</a></li>
+            <li><a href="#section-shellbag">ShellBag Analyzer – анализ удаленных папок</a></li>
             <li><a href="#section-systeminformer">System Informer – анализ памяти</a></li>
             <li><a href="#section-stringsparser">StringsParser – анализ системных служб</a></li>
             <li><a href="#section-echojournal">Echo Journal – анализ журналов файловой системы</a></li>
@@ -425,8 +516,22 @@
             <li><a href="#section-jlivef">JliveF – JVMTI Detector</a></li>
             <li><a href="#section-prefetchview">PrefetchView++ – анализ Prefetch файлов</a></li>
             <li><a href="#section-usbdrivelog">USBDriveLog – история подключения USB</a></li>
+            <li><a href="#section-userassistview">UserAssistView – анализ запущенных .exe</a></li>
+            <li><a href="#section-executedprogramslist">ExecutedProgramsList – все запущенные программы</a></li>
+            <li><a href="#section-browserdownloadsview">BrowserDownloadsView – история скачанных файлов</a></li>
             <li><a href="#section-cleandetector">Clean‑Detecting – анализ следов очистки</a></li>
+            <li><a href="#section-windeflog">WinDefLog – логи Microsoft Defender</a></li>
         </ul>
+    </div>
+
+    <!-- ============================================================ -->
+    <!--                    РАЗДЕЛ: БАЗА                                -->
+    <!-- ============================================================ -->
+
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="label">⬡ БАЗА</span>
+        <span class="line"></span>
     </div>
 
     <h2 id="section-step1">Шаг 1 – Проверка версии в игре</h2>
@@ -545,210 +650,365 @@
     <h2 id="section-step12">Шаг 12 – Папки читов в .minecraft</h2>
     <p>Заходим в <code>.minecraft</code> и смотрим наличие папок с названиями: <strong>Impact, Wurst, NeverHook, Wexside, Celestial, ViaMCP, baritone</strong> и т.д.</p>
 
-    <h2 id="section-everything">🔍 Everything – поиск по ключам</h2>
-    <p><strong>Шаг 13:</strong> Открываем программу <strong>Everything</strong>, нажимаем <kbd>Ctrl + P</kbd> → исключения, если есть – удаляем и ищем эти файлы.</p>
+    <!-- ============================================================ -->
+    <!--                    РАЗДЕЛ: ПРОГРАММЫ                           -->
+    <!-- ============================================================ -->
 
-    <h3>Список для поиска (читерные моды и функции):</h3>
-    <div class="code-block">
-        aimmbot | freecam | elytra_swap | smart_moving | chest_stealer | topkaautobuy | gumballoffmode | hitbox | flauncher | doomsday | viaversion | viamcp | dauntiblyat | bariton | x-ray | xray | spambot | spam_bot | inventory_walk | player_highlighter | bedrock_breaker_mode | double_hotbar | armor_hotswap | chest_locater | savesearcher | worlddownloader | chunkcopy | tweakeroo | mob_hitbox | librarian_trade_finder | wise_folder_hider | Jopapopa | r3d | cheat | nathox | inertia | akrien | nova | kilo | squad | vape | kyprak | Jessica | hcl | zamorozka | freecam | Nodus | Matix | wurst | weepcraft | impact | skillclient | wexside | RichFreeLoader | neverhook | celestial | deadcode | wolfram | aristois | flux | jigsaw | Liquidbounce | sigma | neverhook | wintware | deadcode | celestal | yammi | ecelon | kamiblue | meteor | ares | zeusclient | nursultan | konas | vaneclient | shitclient | Reach | trash | X-ray | Xray | rename_me_please | editme | CRACKTHISSHIT.dll | baritone
+    <div class="section-divider">
+        <span class="line"></span>
+        <span class="label">⬡ ПРОГРАММЫ</span>
+        <span class="line"></span>
     </div>
-
-    <h3>Список читов:</h3>
-    <div class="code-block">
-        baritone | cabaletta | jigsaw | LiquidBounce | Wurst | Rogalik | GishCode | Impact | RusherHack | Pyro | Zamorozka | Konas | WintWare | Nursultan | Celestial | Expensive | Future | ArbuzClient | Minced | xray | x-ray | Akrien | Norules | Matix | Deadcode | Newcode | Destroy | Eternity | Wexside | Rich | EdiTME.dll | mc100.dll | .R3D | Wild | NightMare | BoberWare | Cortex | Bleach | .wex | hitbox | Fluger | Jessica | neat | freecam | inventorytotem | Chestlocator | Valex | fabaritone | nuriK | crack | celka | mincedpon | KeazClient | Tofficlient | Darkness | norulesBaritone | ArchWare | INTAVE | Excellent | Nova | HaramDev | ShitClient | PonosClient | Meteor | VegaLine | Newlight | Exclusive | TenseClient | MoonProject | QuickClient | MoonHack | DeltaClient | HachClient | FullMyst | Augustus | Gothaj | Rise | Sirius | Wave | Fatal | VeristClient | ThunderHack | Avalon | WissendFree | ResoluteFree | KwishFree | CentricFree | Exp | TutotialClient | EnergyClient | FecuritySQ | Noclips | Catlavan | KoshkaDLC | rename_me_please.dll | Sigma | FLauncher | ATMOSPHERE | Esp | Wolfram | Hider | FLUX | Huzuni | Legit | Aristois | NeverHook | Exloader | Calestial | ClowdyClient | Vert | VapeClient | ClownClient | Norender | EXTREMEHACK | Asteria
-    </div>
-
-    <h3>Поиск по размерам .jar:</h3>
-    <ul>
-        <li>Ищем файлы с весом <strong>1976 КБ, 2252 КБ, 2236 КБ, 2302 КБ, 2324 КБ</strong> – обычно это Doomsday.</li>
-        <li>Вписываем <span class="inline-code">shellbag</span> – ищем <code>shellbag_analizer_cleaner.ini</code> и папки <code>ShellBags Backups day</code>.</li>
-        <li>Вписываем <span class="inline-code">History</span> – ищем папку с "часами и зеленой стрелкой". Смотрим за последние 30 дней.</li>
-    </ul>
-
-    <h3>🎯 Drip Lite (актуальный вес на 07.07.2026)</h3>
-    <div class="important-note">
-        <strong>Внимание!</strong> Текущий вес чита <strong>Drip Lite</strong> составляет <span class="highlight">27 584 КБ</span> (28 246 016 байт).
-    </div>
-    <p>Для поиска в Everything используйте следующий запрос:</p>
-    <div class="code-block" style="background: #fef3c7; border: 2px solid #f59e0b;">
-        size:27584kb
-    </div>
-    <p>Если вы находите файл с таким весом — это с высокой вероятностью Drip Lite. Рекомендуется дополнительно проверить файл через VirusTotal или декомпилятор.</p>
 
     <h2 id="section-modchecker">🔧 Проверка модов через PowerShell</h2>
 
-    <p><strong>Шаг 1:</strong> Запустите <strong>командную строку (CMD)</strong> от имени администратора. Для этого нажмите <kbd>Win</kbd>, введите <span class="inline-code">cmd</span>, кликните правой кнопкой мыши и выберите <strong>«Запуск от имени администратора»</strong>.</p>
+    <div class="program-card">
+        <p><strong>Шаг 1:</strong> Запустите <strong>командную строку (CMD)</strong> от имени администратора. Для этого нажмите <kbd>Win</kbd>, введите <span class="inline-code">cmd</span>, кликните правой кнопкой мыши и выберите <strong>«Запуск от имени администратора»</strong>.</p>
 
-    <div class="important-note">
-        <strong>Важно:</strong> Используйте именно <strong>CMD</strong>, а не PowerShell. Скрипт будет запущен через вызов PowerShell из командной строки.
+        <div class="important-note">
+            <strong>Важно:</strong> Используйте именно <strong>CMD</strong>, а не PowerShell. Скрипт будет запущен через вызов PowerShell из командной строки.
+        </div>
+
+        <p><strong>Шаг 2:</strong> Скопируйте и вставьте в командную строку следующую команду:</p>
+        <div class="code-block">
+            powershell Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass && powershell Invoke-Expression (Invoke-RestMethod https://raw.githubusercontent.com/HadronCollision/PowershellScripts/refs/heads/main/HabibiModAnalyzer.ps1)
+        </div>
+
+        <p><strong>Шаг 3:</strong> После запуска скрипта программа запросит путь к папке <code>mods</code>. Скопируйте полный путь к папке с модами игрока (например, <code>C:\Users\Имя_пользователя\AppData\Roaming\.minecraft\mods</code>) и вставьте его в консоль. Нажмите <kbd>Enter</kbd> для начала анализа.</p>
+
+        <p><strong>Шаг 4:</strong> Дождитесь завершения проверки. Скрипт проанализирует все моды и выдаст результат.</p>
+
+        <h4 style="margin-top: 15px;">📊 Интерпретация результатов:</h4>
+
+        <ul>
+            <li>
+                <strong>⚠️ Unknown mods</strong> — моды, которые не удалось идентифицировать. Это может означать:
+                <ul>
+                    <li>Самописный мод (возможно, с вшитыми читами).</li>
+                    <li>Изменённый (модифицированный) мод, в который могли добавить хитбоксы или другие читерские функции.</li>
+                </ul>
+                <div class="info-note">
+                    <strong>Рекомендация:</strong> Сравните размер (вес) подозрительного мода с версией из официального репозитория (<a href="https://modrinth.com" target="_blank">Modrinth</a> или <a href="https://github.com" target="_blank">GitHub</a>). Если вес отличается — мод был изменён.
+                </div>
+            </li>
+            <li>
+                <strong>🚫 Cheat strings</strong> — скрипт обнаружил строки, характерные для читов. В этом случае необходимо дополнительно проверить мод через декомпилятор <strong>JD-GUI</strong>, чтобы убедиться в наличии запрещённого кода.
+            </li>
+        </ul>
+
+        <div class="info-note">
+            <strong>Исключение:</strong> Скрипт может ошибочно детектировать мод <strong>ViaVersion</strong> (или ViaFabric) как <code>AimAssist</code>. Это ложное срабатывание, не обращайте на него внимания.
+        </div>
+
+        <div class="contact-info">
+            <strong>💬 Нужна помощь с декомпиляцией?</strong><br>
+            Если вы не знаете, как пользоваться <strong>JD-GUI</strong> или как читать код Java-модов, обращайтесь:<br>
+            📱 <strong>Discord:</strong> fenkik<br>
+            📱 <strong>Telegram:</strong> <a href="https://t.me/leimovi" target="_blank">@leimovi</a><br>
+            Я научу вас анализировать код и находить читы в модах.
+        </div>
+
+        <div class="danger-note">
+            <strong>⚠️ Важно:</strong> Не используйте сайт <strong>HolyCheck</strong> для анализа модов — он бесполезен и не даёт достоверных результатов. Пользуйтесь только указанным скриптом и декомпиляцией через JD-GUI.
+        </div>
     </div>
 
-    <p><strong>Шаг 2:</strong> Скопируйте и вставьте в командную строку следующую команду:</p>
-    <div class="code-block">
-        powershell Set-ExecutionPolicy -Scope Process -ExecutionPolicy Bypass && powershell Invoke-Expression (Invoke-RestMethod https://raw.githubusercontent.com/HadronCollision/PowershellScripts/refs/heads/main/HabibiModAnalyzer.ps1)
+    <h2 id="section-everything">🔍 Everything – поиск по ключам</h2>
+
+    <div class="program-card">
+        <p><strong>Шаг 1:</strong> Открываем программу <strong>Everything</strong>, нажимаем <kbd>Ctrl + P</kbd> → исключения, если есть – удаляем и ищем эти файлы.</p>
+
+        <h4 style="margin-top: 15px;">Список для поиска (читерные моды и функции):</h4>
+        <div class="code-block">
+            aimmbot | freecam | elytra_swap | smart_moving | chest_stealer | topkaautobuy | gumballoffmode | hitbox | flauncher | doomsday | viaversion | viamcp | dauntiblyat | bariton | x-ray | xray | spambot | spam_bot | inventory_walk | player_highlighter | bedrock_breaker_mode | double_hotbar | armor_hotswap | chest_locater | savesearcher | worlddownloader | chunkcopy | tweakeroo | mob_hitbox | librarian_trade_finder | wise_folder_hider | Jopapopa | r3d | cheat | nathox | inertia | akrien | nova | kilo | squad | vape | kyprak | Jessica | hcl | zamorozka | freecam | Nodus | Matix | wurst | weepcraft | impact | skillclient | wexside | RichFreeLoader | neverhook | celestial | deadcode | wolfram | aristois | flux | jigsaw | Liquidbounce | sigma | neverhook | wintware | deadcode | celestal | yammi | ecelon | kamiblue | meteor | ares | zeusclient | nursultan | konas | vaneclient | shitclient | Reach | trash | X-ray | Xray | rename_me_please | editme | CRACKTHISSHIT.dll | baritone
+        </div>
+
+        <h4 style="margin-top: 15px;">Список читов:</h4>
+        <div class="code-block">
+            baritone | cabaletta | jigsaw | LiquidBounce | Wurst | Rogalik | GishCode | Impact | RusherHack | Pyro | Zamorozka | Konas | WintWare | Nursultan | Celestial | Expensive | Future | ArbuzClient | Minced | xray | x-ray | Akrien | Norules | Matix | Deadcode | Newcode | Destroy | Eternity | Wexside | Rich | EdiTME.dll | mc100.dll | .R3D | Wild | NightMare | BoberWare | Cortex | Bleach | .wex | hitbox | Fluger | Jessica | neat | freecam | inventorytotem | Chestlocator | Valex | fabaritone | nuriK | crack | celka | mincedpon | KeazClient | Tofficlient | Darkness | norulesBaritone | ArchWare | INTAVE | Excellent | Nova | HaramDev | ShitClient | PonosClient | Meteor | VegaLine | Newlight | Exclusive | TenseClient | MoonProject | QuickClient | MoonHack | DeltaClient | HachClient | FullMyst | Augustus | Gothaj | Rise | Sirius | Wave | Fatal | VeristClient | ThunderHack | Avalon | WissendFree | ResoluteFree | KwishFree | CentricFree | Exp | TutotialClient | EnergyClient | FecuritySQ | Noclips | Catlavan | KoshkaDLC | rename_me_please.dll | Sigma | FLauncher | ATMOSPHERE | Esp | Wolfram | Hider | FLUX | Huzuni | Legit | Aristois | NeverHook | Exloader | Calestial | ClowdyClient | Vert | VapeClient | ClownClient | Norender | EXTREMEHACK | Asteria
+        </div>
+
+        <h4 style="margin-top: 15px;">Поиск по размерам .jar:</h4>
+        <ul>
+            <li>Ищем файлы с весом <strong>1976 КБ, 2252 КБ, 2236 КБ, 2302 КБ, 2324 КБ</strong> – обычно это Doomsday.</li>
+            <li>Вписываем <span class="inline-code">shellbag</span> – ищем <code>shellbag_analizer_cleaner.ini</code> и папки <code>ShellBags Backups day</code>.</li>
+            <li>Вписываем <span class="inline-code">History</span> – ищем папку с "часами и зеленой стрелкой". Смотрим за последние 30 дней.</li>
+        </ul>
+
+        <h4 style="margin-top: 15px;">🎯 Drip Lite (актуальный вес на 07.07.2026)</h4>
+        <div class="important-note">
+            <strong>Внимание!</strong> Текущий вес чита <strong>Drip Lite</strong> составляет <span class="highlight">27 584 КБ</span> (28 246 016 байт).
+        </div>
+        <p>Для поиска в Everything используйте следующий запрос:</p>
+        <div class="code-block" style="background: #fef3c7; border: 2px solid #f59e0b;">
+            size:27584kb
+        </div>
+        <p>Если вы находите файл с таким весом — это с высокой вероятностью Drip Lite. Рекомендуется дополнительно проверить файл через VirusTotal или декомпилятор.</p>
     </div>
 
-    <p><strong>Шаг 3:</strong> После запуска скрипта программа запросит путь к папке <code>mods</code>. Скопируйте полный путь к папке с модами игрока (например, <code>C:\Users\Имя_пользователя\AppData\Roaming\.minecraft\mods</code>) и вставьте его в консоль. Нажмите <kbd>Enter</kbd> для начала анализа.</p>
+    <h2 id="section-shellbag">📁 ShellBag Analyzer – анализ удаленных папок</h2>
 
-    <p><strong>Шаг 4:</strong> Дождитесь завершения проверки. Скрипт проанализирует все моды и выдаст результат.</p>
+    <div class="program-card">
+        <p><strong>ShellBag Analyzer</strong> — это утилита, которая сканирует все папки в системе, включая те, которые были удалены. Программа особенно полезна при проверках, так как позволяет обнаружить следы удаленных директорий, которые могли содержать читы или другие запрещенные файлы.</p>
 
-    <h3>📊 Интерпретация результатов:</h3>
+        <h4 style="margin-top: 15px;">⚙️ Как пользоваться:</h4>
+        <ol>
+            <li>Откройте программу <strong>ShellBag Analyzer</strong>.</li>
+            <li>Нажмите кнопку <strong>«Анализ»</strong>.</li>
+            <li>Выберите раздел <strong>«Удаленные папки»</strong> и внимательно изучите результаты.</li>
+        </ol>
 
-    <ul>
-        <li>
-            <strong>⚠️ Unknown mods</strong> — моды, которые не удалось идентифицировать. Это может означать:
+        <div class="important-note">
+            <strong>⚠️ Важно:</strong> Если ShellBag практически пустой, выполните следующие действия:
+            <ol style="margin-top: 8px;">
+                <li>Проверьте дату установки системы через <kbd>Win + R</kbd> → <span class="inline-code">cmd</span> → <span class="inline-code">systeminfo</span>.</li>
+                <li>Если дата установки более <strong>одного месяца</strong>, а ShellBag пустой — это подозрительно.</li>
+                <li>Ищите файл <code>shellbag_analyzer_cleaner.ini</code> через Everything.</li>
+                <li>Если файл не найден, дополнительно проверьте его наличие через утилиту <strong>Echo Journal</strong>.</li>
+            </ol>
+        </div>
+
+        <div class="danger-note">
+            <strong>🚫 Признаки очистки:</strong>
             <ul>
-                <li>Самописный мод (возможно, с вшитыми читами).</li>
-                <li>Изменённый (модифицированный) мод, в который могли добавить хитбоксы или другие читерские функции.</li>
+                <li>ShellBag пустой при давней дате установки системы.</li>
+                <li>Найден файл <code>shellbag_analyzer_cleaner.ini</code> — явный признак использования чистильщика.</li>
+                <li>В Echo Journal обнаружены следы удаления записей ShellBag.</li>
             </ul>
-            <div class="info-note">
-                <strong>Рекомендация:</strong> Сравните размер (вес) подозрительного мода с версией из официального репозитория (<a href="https://modrinth.com" target="_blank">Modrinth</a> или <a href="https://github.com" target="_blank">GitHub</a>). Если вес отличается — мод был изменён.
-            </div>
-        </li>
-        <li>
-            <strong>🚫 Cheat strings</strong> — скрипт обнаружил строки, характерные для читов. В этом случае необходимо дополнительно проверить мод через декомпилятор <strong>JD-GUI</strong>, чтобы убедиться в наличии запрещённого кода.
-        </li>
-    </ul>
+        </div>
 
-    <div class="info-note">
-        <strong>Исключение:</strong> Скрипт может ошибочно детектировать мод <strong>ViaVersion</strong> (или ViaFabric) как <code>AimAssist</code>. Это ложное срабатывание, не обращайте на него внимания.
+        <div class="info-note">
+            <strong>💡 Совет:</strong> Всегда перепроверяйте подозрительные результаты через несколько инструментов. Если ShellBag пустой, а система установлена давно — это весомый аргумент в пользу того, что игрок что-то скрывает.
+        </div>
     </div>
 
-    <div class="contact-info">
-        <strong>💬 Нужна помощь с декомпиляцией?</strong><br>
-        Если вы не знаете, как пользоваться <strong>JD-GUI</strong> или как читать код Java-модов, обращайтесь:<br>
-        📱 <strong>Discord:</strong> fenkik<br>
-        📱 <strong>Telegram:</strong> <a href="https://t.me/leimovi" target="_blank">@leimovi</a><br>
-        Я научу вас анализировать код и находить читы в модах.
-    </div>
-
-    <div class="danger-note">
-        <strong>⚠️ Важно:</strong> Не используйте сайт <strong>HolyCheck</strong> для анализа модов — он бесполезен и не даёт достоверных результатов. Пользуйтесь только указанным скриптом и декомпиляцией через JD-GUI.
+    <div class="image-container">
+        <img src="17.png" alt="ShellBag Analyzer интерфейс">
+        <div class="image-caption">Интерфейс ShellBag Analyzer — пример анализа удаленных папок</div>
     </div>
 
     <h2 id="section-systeminformer">🖥️ System Informer – анализ памяти</h2>
 
-    <p><strong>Шаг 1:</strong> Запустите <strong>System Informer</strong> с правами администратора. В строке поиска введите <span class="inline-code">javaw.exe</span>.</p>
-    <div class="important-note">
-        <strong>Важно:</strong> Если в результатах отображается несколько процессов <code>javaw.exe</code>, отсортируйте их по столбцу "Size" и выберите процесс с наибольшим весом. Именно он соответствует активному экземпляру Minecraft.
-    </div>
-
-    <p><strong>Шаг 2:</strong> Дважды кликните по выбранному процессу. В открывшемся окне перейдите на вкладку <strong>General</strong> и обратите внимание на поле <strong>Started</strong> — здесь указано точное время запуска Minecraft. Это позволяет определить, когда игрок начал сессию.</p>
-
-    <div class="image-container">
-        <img src="8.png" alt="System Informer General Started">
-        <div class="image-caption">Вкладка General — смотрим время запуска (Started)</div>
-    </div>
-
-    <p><strong>Шаг 3:</strong> Перейдите на вкладку <strong>Memory</strong>, затем в меню <strong>Options</strong> выберите пункт <strong>Strings...</strong>.</p>
-    <ul>
-        <li>В поле <strong>Minimum length</strong> установите значение <strong>4</strong>.</li>
-        <li>Отметьте <strong>все чекбоксы</strong>, за исключением <strong>Extended Unicode</strong>.</li>
-        <li>Дождитесь завершения сканирования — это может занять несколько секунд в зависимости от загруженности системы.</li>
-    </ul>
-
-    <div class="image-container">
-        <img src="9.png" alt="System Informer настройки Strings">
-        <div class="image-caption">Настройки Strings в System Informer</div>
-    </div>
-
-    <p><strong>Шаг 4:</strong> После окончания анализа нажмите кнопку <strong>Filter</strong> в левом нижнем углу, выберите режим <strong>Contains (case-insensitive)</strong> и поочередно вводите строки из списков ниже.</p>
-    <div class="important-note">
-        <strong>Принцип работы:</strong> Если в памяти процесса присутствуют указанные строки, это свидетельствует о загрузке запрещенного ПО. Обнаружение хотя бы одного совпадения является достаточным основанием для бана.
-    </div>
-
     <div class="program-card">
-        <h3>🔴 DoomsDay Client</h3>
-        <div class="code-block">
-            VURwU
-            `gq`lZxwVQp` 
-            pFwthnO
-            b/otKY%xY]$;1f 8)
-            5Ra1Z 7)
-            G'VGyr4ogt 6)
-            fyWKA@ 5)
-            YZWWWWWWWWWWWWWWWWWWW
-            YpBC
-            nXw]s
-            p~,R
-            iTxHWpLAud
-            mz42dq
+        <p><strong>Шаг 1:</strong> Запустите <strong>System Informer</strong> с правами администратора. В строке поиска введите <span class="inline-code">javaw.exe</span>.</p>
+        <div class="important-note">
+            <strong>Важно:</strong> Если в результатах отображается несколько процессов <code>javaw.exe</code>, отсортируйте их по столбцу "Size" и выберите процесс с наибольшим весом. Именно он соответствует активному экземпляру Minecraft.
         </div>
-    </div>
 
-    <div class="program-card">
-        <h3>🔵 Grim Client</h3>
-        <div class="code-block">
-            ops/ec/base/aopthngt/
-            abc/def/qIHISX
+        <p><strong>Шаг 2:</strong> Дважды кликните по выбранному процессу. В открывшемся окне перейдите на вкладку <strong>General</strong> и обратите внимание на поле <strong>Started</strong> — здесь указано точное время запуска Minecraft. Это позволяет определить, когда игрок начал сессию.</p>
+
+        <div class="image-container">
+            <img src="8.png" alt="System Informer General Started">
+            <div class="image-caption">Вкладка General — смотрим время запуска (Started)</div>
         </div>
-    </div>
 
-    <div class="program-card">
-        <h3>🟣 Prestige Client</h3>
-        <div class="code-block">
-            zPrestige
-            dev/zprestige/
-            dev/zprestige/prestige/api/mixin/MixinLightmapTextureManager.classPK
+        <p><strong>Шаг 3:</strong> Перейдите на вкладку <strong>Memory</strong>, затем в меню <strong>Options</strong> выберите пункт <strong>Strings...</strong>.</p>
+        <ul>
+            <li>В поле <strong>Minimum length</strong> установите значение <strong>4</strong>.</li>
+            <li>Отметьте <strong>все чекбоксы</strong>, за исключением <strong>Extended Unicode</strong>.</li>
+            <li>Дождитесь завершения сканирования — это может занять несколько секунд в зависимости от загруженности системы.</li>
+        </ul>
+
+        <div class="image-container">
+            <img src="9.png" alt="System Informer настройки Strings">
+            <div class="image-caption">Настройки Strings в System Informer</div>
         </div>
-    </div>
 
-    <div class="program-card">
-        <h3>🟢 Vape Client</h3>
-        <div class="code-block">
-            alloweditems
+        <p><strong>Шаг 4:</strong> После окончания анализа нажмите кнопку <strong>Filter</strong> в левом нижнем углу, выберите режим <strong>Contains (case-insensitive)</strong> и поочередно вводите строки из списков ниже.</p>
+        <div class="important-note">
+            <strong>Принцип работы:</strong> Если в памяти процесса присутствуют указанные строки, это свидетельствует о загрузке запрещенного ПО. Обнаружение хотя бы одного совпадения является достаточным основанием для бана.
         </div>
-    </div>
 
-    <div class="program-card">
-        <h3>🟡 Slinky</h3>
-        <div class="code-block">
-            SlinkyHooks
-            SlinkyChannelHandler
-            slinky_library.dll
-            slinkyhook.dll
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🔴 DoomsDay Client</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item">
+                    <span class="string-text">VURwU</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'VURwU')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">`gq`lZxwVQp`</span>
+                    <button class="copy-string-btn" onclick="copyString(this, '`gq`lZxwVQp`')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">pFwthnO</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'pFwthnO')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">b/otKY%xY]$;1f 8)</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'b/otKY%xY]$;1f 8)')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">5Ra1Z 7)</span>
+                    <button class="copy-string-btn" onclick="copyString(this, '5Ra1Z 7)')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">G'VGyr4ogt 6)</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'G'VGyr4ogt 6)')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">fyWKA@ 5)</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'fyWKA@ 5)')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">YZWWWWWWWWWWWWWWWWWWW</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'YZWWWWWWWWWWWWWWWWWWW')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">YpBC</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'YpBC')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">nXw]s</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'nXw]s')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">p~,R</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'p~,R')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">iTxHWpLAud</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'iTxHWpLAud')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">mz42dq</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'mz42dq')">Копировать</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="program-card">
-        <h3>🟠 NovoWare Client</h3>
-        <div class="code-block">
-            aHR0cDovL2FwaS5ub3ZhY2xpZW50LmxvbC93ZWJob29rLnR4dA==
-            McLPXEl
-            QZNMxL9dJW
-            me/jellysquid/mods/lithium/common/state/
-            me/jellysquid/mods/lithium/common/state/combat/AimAssist.class
-            me/jellysquid/mods/lithium/common/state/client/SelfDestruct.class
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🔵 Grim Client</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item">
+                    <span class="string-text">ops/ec/base/aopthngt/</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'ops/ec/base/aopthngt/')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">abc/def/qIHISX</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'abc/def/qIHISX')">Копировать</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="program-card">
-        <h3>🔴 Общие детекты (универсальные строки)</h3>
-        <div class="code-block">
-            chs/Main
-            chs/Profiller
-            Auto Crystal
-            Self Destruct
-            Auto Anchor
-            Auto Loot Yeeter
-            hitbox_expand
-            expand_hitbox
-            ZuCo
-            ZuCo.(&lt;l3?NB.0BC
-            st/mixin/KeyboardMixin
-            SelfDestruct.java
-            GetTargetingMargain
-            CwCrystal.class
-            ADH.class
-            ModuleManager.class
-            qProtectYZWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW
-            geteventbutton
-            qProtect
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🟣 Prestige Client</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item">
+                    <span class="string-text">zPrestige</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'zPrestige')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">dev/zprestige/</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'dev/zprestige/')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">dev/zprestige/prestige/api/mixin/MixinLightmapTextureManager.classPK</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'dev/zprestige/prestige/api/mixin/MixinLightmapTextureManager.classPK')">Копировать</button>
+                </div>
+            </div>
         </div>
-    </div>
 
-    <div class="danger-note">
-        <strong>⚠️ Важно:</strong> Обнаружение любой из перечисленных строк в памяти процесса <code>javaw.exe</code> является безусловным доказательством использования читов. В таком случае игрок подлежит блокировке.
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🟢 Vape Client</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item">
+                    <span class="string-text">alloweditems</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'alloweditems')">Копировать</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🟡 Slinky</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item">
+                    <span class="string-text">SlinkyHooks</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'SlinkyHooks')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">SlinkyChannelHandler</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'SlinkyChannelHandler')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">slinky_library.dll</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'slinky_library.dll')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">slinkyhook.dll</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'slinkyhook.dll')">Копировать</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🟠 NovoWare Client</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item">
+                    <span class="string-text">aHR0cDovL2FwaS5ub3ZhY2xpZW50LmxvbC93ZWJob29rLnR4dA==</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'aHR0cDovL2FwaS5ub3ZhY2xpZW50LmxvbC93ZWJob29rLnR4dA==')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">McLPXEl</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'McLPXEl')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">QZNMxL9dJW</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'QZNMxL9dJW')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">me/jellysquid/mods/lithium/common/state/</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'me/jellysquid/mods/lithium/common/state/')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">me/jellysquid/mods/lithium/common/state/combat/AimAssist.class</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'me/jellysquid/mods/lithium/common/state/combat/AimAssist.class')">Копировать</button>
+                </div>
+                <div class="string-item">
+                    <span class="string-text">me/jellysquid/mods/lithium/common/state/client/SelfDestruct.class</span>
+                    <button class="copy-string-btn" onclick="copyString(this, 'me/jellysquid/mods/lithium/common/state/client/SelfDestruct.class')">Копировать</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🔴 Cortex Client</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item">
+                    <span class="string-text">84.240.206.189</span>
+                    <button class="copy-string-btn" onclick="copyString(this, '84.240.206.189')">Копировать</button>
+                </div>
+            </div>
+        </div>
+
+        <div class="program-card" style="margin: 10px 0;">
+            <h3>🔴 Общие детекты (универсальные строки)</h3>
+            <div class="code-block" style="padding: 8px 12px;">
+                <div class="string-item"><span class="string-text">chs/Main</span><button class="copy-string-btn" onclick="copyString(this, 'chs/Main')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">chs/Profiller</span><button class="copy-string-btn" onclick="copyString(this, 'chs/Profiller')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">Auto Crystal</span><button class="copy-string-btn" onclick="copyString(this, 'Auto Crystal')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">Self Destruct</span><button class="copy-string-btn" onclick="copyString(this, 'Self Destruct')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">Auto Anchor</span><button class="copy-string-btn" onclick="copyString(this, 'Auto Anchor')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">Auto Loot Yeeter</span><button class="copy-string-btn" onclick="copyString(this, 'Auto Loot Yeeter')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">hitbox_expand</span><button class="copy-string-btn" onclick="copyString(this, 'hitbox_expand')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">expand_hitbox</span><button class="copy-string-btn" onclick="copyString(this, 'expand_hitbox')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">ZuCo</span><button class="copy-string-btn" onclick="copyString(this, 'ZuCo')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">ZuCo.(&lt;l3?NB.0BC</span><button class="copy-string-btn" onclick="copyString(this, 'ZuCo.(&lt;l3?NB.0BC')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">st/mixin/KeyboardMixin</span><button class="copy-string-btn" onclick="copyString(this, 'st/mixin/KeyboardMixin')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">SelfDestruct.java</span><button class="copy-string-btn" onclick="copyString(this, 'SelfDestruct.java')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">GetTargetingMargain</span><button class="copy-string-btn" onclick="copyString(this, 'GetTargetingMargain')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">CwCrystal.class</span><button class="copy-string-btn" onclick="copyString(this, 'CwCrystal.class')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">ADH.class</span><button class="copy-string-btn" onclick="copyString(this, 'ADH.class')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">ModuleManager.class</span><button class="copy-string-btn" onclick="copyString(this, 'ModuleManager.class')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">qProtectYZWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW</span><button class="copy-string-btn" onclick="copyString(this, 'qProtectYZWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWWW')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">geteventbutton</span><button class="copy-string-btn" onclick="copyString(this, 'geteventbutton')">Копировать</button></div>
+                <div class="string-item"><span class="string-text">qProtect</span><button class="copy-string-btn" onclick="copyString(this, 'qProtect')">Копировать</button></div>
+            </div>
+        </div>
+
+        <div class="danger-note">
+            <strong>⚠️ Важно:</strong> Обнаружение любой из перечисленных строк в памяти процесса <code>javaw.exe</code> является безусловным доказательством использования читов. В таком случае игрок подлежит блокировке.
+        </div>
     </div>
 
     <h2 id="section-stringsparser">🔍 StringsParser – анализ системных служб</h2>
@@ -1035,6 +1295,224 @@
         <div class="image-caption">Интерфейс USBDriveLog — пример истории подключения USB</div>
     </div>
 
+    <h2 id="section-userassistview">📋 UserAssistView – анализ запущенных .exe</h2>
+
+    <div class="program-card">
+        <p><strong>UserAssistView</strong> — это удобный парсер артефакта UserAssist, который автоматически расшифровывает пути в реестре и показывает все <code>.exe</code> файлы, которые когда-либо запускались на компьютере.</p>
+
+        <div class="important-note">
+            <strong>🎯 Для проверяющего это важно, потому что:</strong>
+            <ul>
+                <li>UserAssist хранит историю запуска программ в зашифрованном виде.</li>
+                <li>UserAssistView расшифровывает эти данные и показывает, какие <code>.exe</code> файлы запускал игрок.</li>
+                <li>Если в списке есть подозрительные названия (читы, инжекторы, лоадеры) — это красный флаг.</li>
+                <li>Даже если игрок удалил сам файл, запись о его запуске может остаться в UserAssist.</li>
+            </ul>
+        </div>
+
+        <h4 style="margin-top: 15px;">📋 Какая информация выводится:</h4>
+        <ul>
+            <li><strong>Путь к .exe файлу</strong> — полный путь к запущенной программе</li>
+            <li><strong>Время запуска</strong> — когда программа была запущена</li>
+            <li><strong>Количество запусков</strong> — сколько раз запускалась программа</li>
+            <li><strong>Время последнего запуска</strong> — когда программа запускалась в последний раз</li>
+        </ul>
+
+        <h4 style="margin-top: 15px;">⚙️ Как пользоваться:</h4>
+        <ol>
+            <li>Скачайте программу <strong>UserAssistView</strong>.</li>
+            <li>Запустите исполняемый файл.</li>
+            <li>Программа автоматически прочитает UserAssist-записи из реестра и расшифрует их.</li>
+            <li>В таблице вы увидите все <code>.exe</code> файлы, которые запускались на компьютере.</li>
+            <li>Особое внимание обратите на подозрительные названия:
+                <ul>
+                    <li>Названия читов (Prestige, Cortex, Doomsday, Vape и т.д.)</li>
+                    <li>Непонятные названия с цифрами или рандомными символами</li>
+                    <li>Файлы из папок <code>Temp</code>, <code>AppData</code>, <code>Windows</code></li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="danger-note">
+            <strong>🚫 Что искать:</strong>
+            <ul>
+                <li><strong>Любые .exe файлы с названиями читов</strong> — это прямое доказательство.</li>
+                <li><strong>Непонятные .exe файлы в папке Temp</strong> — часто туда загружаются временные лоадеры.</li>
+                <li><strong>Файлы, которые запускались незадолго до проверки</strong> — игрок мог использовать чит прямо перед SS.</li>
+                <li><strong>Если в списке есть файлы, которых нет на диске</strong> — игрок мог их удалить, но след остался.</li>
+            </ul>
+        </div>
+
+        <div class="info-note">
+            <strong>💡 Дополнительно:</strong>
+            <ul>
+                <li>UserAssistView показывает не только <code>.exe</code>, но и другие файлы, которые запускались через проводник (например, <code>.jar</code>, <code>.bat</code>, <code>.vbs</code>).</li>
+                <li>Программа <strong>не требует установки</strong> — просто скачайте и запустите.</li>
+                <li>Вы можете сохранить результаты в файл для дальнейшего анализа.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="19.png" alt="UserAssistView интерфейс">
+        <div class="image-caption">Интерфейс UserAssistView — пример анализа запущенных .exe файлов</div>
+    </div>
+
+    <h2 id="section-executedprogramslist">📋 ExecutedProgramsList – все запущенные программы</h2>
+
+    <div class="program-card">
+        <p><strong>ExecutedProgramsList</strong> — это утилита от Nir Sofer, которая находит и показывает все программы и пакетные файлы (<code>.bat</code>), которые когда-либо запускались на компьютере. Программа собирает информацию из нескольких источников:</p>
+        <ul>
+            <li>Реестр Windows (MuiCache, MUICache, Compatibility Assistant)</li>
+            <li>Папка Prefetch (<code>C:\Windows\Prefetch</code>)</li>
+        </ul>
+
+        <div class="important-note">
+            <strong>🎯 Для проверяющего это важно, потому что:</strong>
+            <ul>
+                <li>Показывает <strong>все запущенные .exe и .bat файлы</strong> на компьютере.</li>
+                <li>Позволяет обнаружить скрытые читы, которые игрок мог запускать через бат-файлы.</li>
+                <li>Даже если игрок удалил файл, запись о запуске может остаться в реестре или Prefetch.</li>
+            </ul>
+        </div>
+
+        <div class="program-links">
+            <a href="https://www.nirsoft.net/utils/executed_programs_list.html" target="_blank" class="download-link">⬇️ nirsoft.net/utils/executed_programs_list.html</a>
+        </div>
+
+        <h4 style="margin-top: 15px;">📋 Какая информация выводится:</h4>
+        <ul>
+            <li><strong>Имя файла</strong> — название <code>.exe</code> или <code>.bat</code> файла</li>
+            <li><strong>Время создания/изменения</strong> — дата создания или изменения файла</li>
+            <li><strong>Версия продукта</strong> — информация о продукте (если доступна)</li>
+            <li><strong>Название продукта</strong> — название программы</li>
+            <li><strong>Компания</strong> — разработчик программы</li>
+            <li><strong>Last Executed On</strong> — время последнего запуска</li>
+        </ul>
+
+        <h4 style="margin-top: 15px;">⚙️ Как пользоваться:</h4>
+        <ol>
+            <li>Скачайте программу по ссылке выше (это standalone .exe, установка не требуется).</li>
+            <li>Запустите <code>ExecutedProgramsList.exe</code>.</li>
+            <li>Для удобной сортировки сделайте следующее:
+                <ol style="margin-top: 4px;">
+                    <li>Нажмите на заголовок колонки <strong>«Last Executed On»</strong> <strong>дважды</strong> (или столько раз, сколько нужно), пока дата не станет самой свежей (сортировка по убыванию).</li>
+                    <li>Затем нажмите на заголовок колонки <strong>«File Description»</strong> <strong>один раз</strong> для сортировки по алфавиту.</li>
+                    <li>Теперь просматривайте список — самые свежие программы будут сверху, и вы сможете легко находить подозрительные.</li>
+                </ol>
+            </li>
+            <li>Особое внимание обратите на:
+                <ul>
+                    <li>Подозрительные <code>.exe</code> файлы с названиями читов.</li>
+                    <li><code>.bat</code> файлы, которые могли использоваться для запуска читов.</li>
+                    <li>Файлы, которые запускались незадолго до проверки.</li>
+                    <li>Файлы с непонятными или рандомными названиями.</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="danger-note">
+            <strong>🚫 Что искать:</strong>
+            <ul>
+                <li><strong>Любые .exe с названиями читов</strong> (Prestige, Cortex, Doomsday, Vape, и т.д.) — прямое доказательство.</li>
+                <li><strong>Непонятные .bat файлы</strong> — часто используются для запуска инжекторов.</li>
+                <li><strong>Файлы из папки Temp</strong> — временные лоадеры часто загружаются туда.</li>
+                <li><strong>Файлы, которые запускались в день проверки</strong> — если игрок использовал чит прямо перед SS, это будет видно.</li>
+            </ul>
+        </div>
+
+        <div class="info-note">
+            <strong>💡 Дополнительно:</strong>
+            <ul>
+                <li>Программа собирает данные из <strong>нескольких источников</strong>, включая <strong>Prefetch</strong> и <strong>реестр</strong>, поэтому она находит больше файлов, чем другие аналоги.</li>
+                <li>Особенно полезна для поиска <code>.bat</code> файлов — многие читы запускаются именно через бат-файлы.</li>
+                <li>Вы можете сохранить результаты в файл для дальнейшего анализа.</li>
+                <li>Работает на всех версиях Windows начиная с XP.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="20.png" alt="ExecutedProgramsList интерфейс">
+        <div class="image-caption">Интерфейс ExecutedProgramsList — пример анализа запущенных программ</div>
+    </div>
+
+    <h2 id="section-browserdownloadsview">🌐 BrowserDownloadsView – история скачанных файлов</h2>
+
+    <div class="program-card">
+        <p><strong>BrowserDownloadsView</strong> — это утилита от Nir Sofer, которая показывает историю скачанных файлов из браузеров в удобной таблице. Программа поддерживает <strong>Chrome</strong>, <strong>Firefox</strong> и все браузеры на их основе (Opera, Yandex, Vivaldi, Brave, Edge Chromium и другие).</p>
+
+        <div class="program-links">
+            <a href="https://www.nirsoft.net/utils/web_browser_downloads_view.html" target="_blank" class="download-link">⬇️ nirsoft.net/utils/web_browser_downloads_view.html</a>
+        </div>
+
+        <div class="important-note">
+            <strong>🎯 Для проверяющего это важно, потому что:</strong>
+            <ul>
+                <li>Показывает <strong>все файлы</strong>, которые игрок скачивал из браузера.</li>
+                <li>Можно увидеть <strong>точное время</strong> скачивания подозрительных файлов.</li>
+                <li>Позволяет обнаружить скачанные читы, инжекторы, лоадеры и другие запрещенные программы.</li>
+                <li>Даже если игрок удалил файл, запись о скачивании может остаться в истории браузера.</li>
+            </ul>
+        </div>
+
+        <h4 style="margin-top: 15px;">📋 Какая информация выводится:</h4>
+        <ul>
+            <li><strong>Filename</strong> — имя скачанного файла</li>
+            <li><strong>Download URL</strong> — ссылка, откуда скачивался файл</li>
+            <li><strong>Web Page URL</strong> — страница, с которой скачивался файл</li>
+            <li><strong>Start Time</strong> — время начала скачивания</li>
+            <li><strong>End Time</strong> — время завершения скачивания</li>
+            <li><strong>Download Duration</strong> — продолжительность скачивания</li>
+            <li><strong>Download Size</strong> — размер скачанного файла</li>
+            <li><strong>Web Browser</strong> — браузер, в котором скачивался файл</li>
+            <li><strong>File Exists</strong> — существует ли файл на диске сейчас</li>
+        </ul>
+
+        <h4 style="margin-top: 15px;">⚙️ Как пользоваться:</h4>
+        <ol>
+            <li>Скачайте программу по ссылке выше (это standalone .exe, установка не требуется).</li>
+            <li>Запустите <code>BrowserDownloadsView.exe</code>.</li>
+            <li>Программа автоматически загрузит историю скачиваний из Chrome и Firefox.</li>
+            <li>Для загрузки с другого источника нажмите <kbd>F9</kbd> и выберите нужный источник.</li>
+            <li>Для удобства отсортируйте таблицу по <strong>End Time</strong> — самые свежие скачивания будут сверху.</li>
+            <li>Особое внимание обратите на:
+                <ul>
+                    <li>Файлы с названиями читов (Prestige, Cortex, Doomsday, Vape, и т.д.)</li>
+                    <li>Подозрительные расширения: <code>.exe</code>, <code>.jar</code>, <code>.dll</code>, <code>.zip</code>, <code>.rar</code></li>
+                    <li>Скачивания, которые происходили незадолго до проверки.</li>
+                    <li>Файлы, которых уже нет на диске (колонка <strong>File Exists</strong> = No).</li>
+                </ul>
+            </li>
+        </ol>
+
+        <div class="danger-note">
+            <strong>🚫 Что искать:</strong>
+            <ul>
+                <li><strong>Любые файлы с названиями читов</strong> — прямое доказательство.</li>
+                <li><strong>Скачивания из подозрительных источников</strong> — неизвестные сайты, Discord, Mediafire, и т.д.</li>
+                <li><strong>Файлы, скачанные в день проверки</strong> — игрок мог скачать чит прямо перед SS.</li>
+                <li><strong>Файлы, которые были удалены</strong> — если файл скачан, но его нет на диске — игрок мог его удалить после использования.</li>
+            </ul>
+        </div>
+
+        <div class="info-note">
+            <strong>💡 Дополнительно:</strong>
+            <ul>
+                <li>Программа поддерживает <strong>все популярные браузеры</strong> на основе Chromium и Firefox.</li>
+                <li>Можно загружать историю с <strong>удаленного компьютера</strong> или внешнего диска.</li>
+                <li>Есть возможность <strong>экспортировать результаты</strong> в HTML, CSV, XML, JSON.</li>
+                <li>Можно <strong>проверить файл на VirusTotal</strong> прямо из программы.</li>
+                <li><strong>Важно:</strong> Файлы, скачанные в режиме инкогнито/приватном режиме, не отображаются.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="21.png" alt="BrowserDownloadsView интерфейс">
+        <div class="image-caption">Интерфейс BrowserDownloadsView — пример истории скачанных файлов</div>
+    </div>
+
     <h2 id="section-cleandetector">🧹 Clean‑Detecting – анализ следов очистки</h2>
 
     <div class="program-card">
@@ -1092,6 +1570,55 @@
         <div class="image-caption">Интерфейс Clean‑Detecting — пример анализа следов очистки</div>
     </div>
 
+    <h2 id="section-windeflog">🛡️ WinDefLog – логи Microsoft Defender</h2>
+
+    <div class="program-card">
+        <p><strong>WinDefLogView</strong> — это небольшая утилита от Nir Sofer, которая читает и расшифровывает логи Microsoft Defender (Windows Defender). Она показывает, что именно находил встроенный антивирус Windows на компьютере игрока.</p>
+
+        <div class="program-links">
+            <a href="https://www.nirsoft.net/utils/windows_defender_log_viewer.html" target="_blank" class="download-link">⬇️ nirsoft.net/utils/windows_defender_log_viewer.html</a>
+        </div>
+
+        <h4 style="margin-top: 15px;">📋 Какая информация выводится:</h4>
+        <ul>
+            <li><strong>Filename</strong> — имя файла, который был обнаружен</li>
+            <li><strong>Detect Time</strong> — время обнаружения</li>
+            <li><strong>Threat Name</strong> — название угрозы</li>
+            <li><strong>Severity</strong> — уровень серьезности</li>
+            <li><strong>Category</strong> — категория угрозы</li>
+            <li><strong>Detection User</strong> — пользователь, под которым было обнаружение</li>
+            <li><strong>Action</strong> — действие, которое было предпринято</li>
+            <li><strong>Origin</strong> — источник угрозы</li>
+        </ul>
+
+        <div class="important-note">
+            <strong>🎯 Для проверяющего важно:</strong> Утилита помогает определить, обнаруживал ли Windows Defender на компьютере игрока файлы, которые могут быть связаны с читами. Если в логах есть подозрительные файлы (<code>.jar</code>, <code>.exe</code>, <code>.dll</code> с названиями читов) — это повод для детальной проверки.
+        </div>
+
+        <h4 style="margin-top: 15px;">⚙️ Как пользоваться:</h4>
+        <ol>
+            <li>Скачайте программу по ссылке выше (это standalone .exe, установка не требуется).</li>
+            <li>Запустите <code>WinDefLogView.exe</code>.</li>
+            <li>Программа автоматически отобразит логи обнаружений Windows Defender на вашем компьютере.</li>
+            <li>Для анализа с удалённого ПК используйте <kbd>F7</kbd> → выберите <strong>Remote Computer</strong>.</li>
+            <li>Сохраните результаты через <kbd>Ctrl+S</kbd> или скопируйте в буфер обмена <kbd>Ctrl+C</kbd>.</li>
+        </ol>
+
+        <div class="info-note">
+            <strong>💡 Советы:</strong>
+            <ul>
+                <li>Программа работает на <strong>Windows 10 и Windows 11</strong>.</li>
+                <li>Использует журнал событий: <code>Microsoft-Windows-Windows Defender/Operational</code>.</li>
+                <li>Если Defender находил файлы с названиями читов — это весомый аргумент против игрока.</li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="image-container">
+        <img src="18.png" alt="WinDefLogView интерфейс">
+        <div class="image-caption">Интерфейс WinDefLogView — пример логов обнаружений Windows Defender</div>
+    </div>
+
     <hr style="border: none; border-top: 2px solid #e2e8f0; margin: 40px 0 20px;">
     <p style="text-align: center; color: #94a3b8; font-size: 0.9em;">
         Мануал by fenkik
@@ -1099,19 +1626,43 @@
 </div>
 
 <script>
+    function copyString(btn, text) {
+        navigator.clipboard.writeText(text).then(function() {
+            btn.textContent = '✅';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.textContent = 'Копировать';
+                btn.classList.remove('copied');
+            }, 2000);
+        }).catch(function() {
+            var textarea = document.createElement('textarea');
+            textarea.value = text;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textarea);
+            btn.textContent = '✅';
+            btn.classList.add('copied');
+            setTimeout(function() {
+                btn.textContent = 'Копировать';
+                btn.classList.remove('copied');
+            }, 2000);
+        });
+    }
+
     document.querySelectorAll('.code-block').forEach(function(block) {
         var btn = document.createElement('button');
         btn.className = 'copy-btn';
-        btn.textContent = 'Копировать';
+        btn.textContent = 'Копировать все';
         block.appendChild(btn);
 
         btn.addEventListener('click', function() {
-            var text = block.innerText.replace('Копировать', '').trim();
+            var text = block.innerText.replace('Копировать все', '').trim();
             navigator.clipboard.writeText(text).then(function() {
                 btn.textContent = 'Скопировано!';
                 btn.classList.add('copied');
                 setTimeout(function() {
-                    btn.textContent = 'Копировать';
+                    btn.textContent = 'Копировать все';
                     btn.classList.remove('copied');
                 }, 2000);
             }, function() {
@@ -1123,7 +1674,7 @@
                 btn.textContent = 'Скопировано!';
                 btn.classList.add('copied');
                 setTimeout(function() {
-                    btn.textContent = 'Копировать';
+                    btn.textContent = 'Копировать все';
                     btn.classList.remove('copied');
                 }, 2000);
             });
